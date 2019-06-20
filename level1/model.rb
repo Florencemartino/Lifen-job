@@ -21,4 +21,13 @@ class Communication
     @color = attributes[:color]
     @sent_at = attributes[:sent_at]
   end
+
+  def price
+    @practitioner_id
+    total_price = 0.1
+    total_price += 0.18 if @color
+    total_price += (@pages_number - 1) * 0.07 if @pages_number > 1
+    total_price += 0.6 if @practitioner_id.express_delivery
+    return total_price
+  end
 end
