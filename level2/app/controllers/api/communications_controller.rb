@@ -1,17 +1,20 @@
+#require'date'
+
 class Api::CommunicationsController < ApplicationController
 
   def create
     practitioner = Practitioner.where(first_name: communication_params[:first_name], last_name: communication_params[:last_name]).first
-
     communication = Communication.new(practitioner_id: practitioner.id, sent_at: communication_params[:sent_at])
-
     communication.save
-
-    render json: communication.to_json, status: :created
   end
 
   def index
-    render json: Communication.all.to_json, status: :ok
+    #start_date = Time.now
+    @communications = Communication.all
+    @communications.includes(:practitioner)
+    #end_date = Time.now
+    #p time = end_date - start_date
+    #raise
   end
 
   def communication_params
