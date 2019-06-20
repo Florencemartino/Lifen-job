@@ -1,4 +1,5 @@
 require 'json'
+require 'date'
 
 class Practitioner
   attr_reader :id, :first_name, :last_name, :express_delivery
@@ -19,7 +20,7 @@ class Communication
     @practitioner_id = attributes[:practitioner_id]
     @pages_number = attributes[:pages_number]
     @color = attributes[:color]
-    @sent_at = attributes[:sent_at]
+    @sent_at = DateTime.parse(attributes[:sent_at])
   end
 
   def price
