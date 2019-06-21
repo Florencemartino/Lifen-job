@@ -10,7 +10,6 @@ class CommunicationRepository
 
   def parse_json
     data = JSON.parse(File.read(@in_path))
-    p data['practitioners']
     data['practitioners'].each do |practitioner_data|
       @practitioners << Practitioner.new(
         id: practitioner_data['id'],
